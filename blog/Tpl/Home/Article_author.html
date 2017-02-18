@@ -1,0 +1,49 @@
+<!doctype html>
+<include file="Public:head"/>
+<html>
+
+<body>
+<div id="container">  
+    <div id="right">
+        
+        <foreach name='aArticle' item='item'>
+            <div class='info'>
+                <div class='header_info'>
+                    <div class='date'>
+                        <div class='day'>
+                            {$item.posttime|date='d',strtotime(###)}
+                        </div>
+                        <div class='month'>
+                            {$item.posttime|date='M',strtotime(###)}
+                        </div>
+                    </div><!-- end of date -->
+                    <div class='article_header'>
+                        <h3 class='title'>
+                            <a href='{:U('Home/Article/singleArticle',array('id'=>$item['id']))}'>{$item.title}</a>
+                        </h3>
+                        <div class='author'>
+                            <!-- {$item.author} -->
+                            <a href="{:U('Home/Article/author',array('author'=>$item['author']))}">{$item.author}</a>
+                        </div>
+                        <div class='comments'>
+                            <a href='{:U('Home/Article/singleArticle',array('id'=>$item['id']))}#clocation'>{$item.commentcount} 条评论</a>
+                        </div>
+                        <div class='tags'>
+                            <!-- <a href="#">{$item.tags}</a> -->
+                           <!-- 循环输出标签 -->
+                            <volist name="item['tags']" id='t'>
+                                <a href="{:U('Home/Article/tags',array('tag'=>$t))}">{$t}</a>&nbsp;&nbsp;
+                            </volist>
+                        </div>
+                    </div><!-- end of article_header-->
+                </div><!-- end of header_info-->
+                <div class='clearFix'></div>
+                <div class='contents'>
+                    {$item.content|htmlspecialchars_decode=###}
+                </div>
+            </div><!-- end of info -->
+        </foreach>
+    </div><!--end of right-->
+</div><!--end of container-->
+</body>
+</html>

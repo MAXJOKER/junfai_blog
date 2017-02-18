@@ -1,0 +1,79 @@
+<!doctype html>
+<include file="Public:head"/>
+<html>
+
+<body>
+<div id="container"> 
+ 
+    
+    <div id="right">
+    	<h1>文章
+    		<a href="{:U('Admin/Article/addArticle')}">写文章</a>
+    	</h1>	
+    	<ul class='article_info'>
+    		<li>
+    			<a href="">全部(<span>{$count}</span>)</a>
+    			 | 
+    		</li>
+    		<li>
+    			<a href="">已发布(<span>{$count}</span>)</a>
+    			 | 
+    		</li>
+    		<li>
+    			<a href="">草稿(<span>{$count}</span>)</a>
+    		</li>
+    	</ul>
+    	<form action='{:U('Admin/Article/deleteAll')}' method='post'>
+	    	<div class='paction'>
+		    	<select name='selectaction'>
+		    		<option>批量操作</option>
+		    		<option value='1'>批量删除</option>
+		    	</select>
+		    	<input type='submit' class='do_action' value='执 行'/>
+	    	</div>
+	    	<table class='fixed widefat table' >
+	    		<thead>
+	    			<tr class='firstrow'>
+		    			<td>
+		    				<input type='checkbox'class='select_all' />
+		    			</td>
+		    			<th>标题</th>
+		    			<th>作者</th>
+		    			<th>分类</th>
+		    			<th>标签</th>
+		    			<th>评论</th>
+		    			<th>日期</th>
+	    			</tr>
+	    		</thead>
+	    		<tbody>
+			    	<foreach name='uarticle' item='a'>
+			    		<tr>
+				    		<th>
+				    			<input type='checkbox' name='check[]' value='{$a['id']}'/>
+				    		</th>
+				    		<td>
+				    			<a href="{:U('Admin/Article/updateArticle',array('id'=>$a['id']))}">{$a.title}</a>
+				    			<!-- <p class='content'>{$a.content|htmlspecialchars_decode=###|mb_substr=0,20,'utf-8'}</p> -->
+				    			<div class='row_action'>
+				    				<span><a href="{:U('Admin/Article/updateArticle',array('id'=>$a['id']))}">编辑</a></span>
+				    				<span><a href="{:U('Home/Article/singleArticle',array('id'=>$a['id']))}">查看</a></span>
+				    				<span><a href="{:U('Admin/Article/deleteArticle',array('id'=>$a['id']))}" class='del'>删除</a></span>
+				    			</div>
+				    		</td>
+				    		<td><a href="{:U('Admin/Article/findAuthor',array('author'=>$a['author']))}">{$a.author}</a></td>			    	
+				    		<td><a href="{:U('Admin/Article/type',array('typeid'=>$a['articletypeid']))}">{$a.articletypeid}</a></td>	
+				    		<td><!-- 循环输出标签 -->
+				    			<volist name="a['tags']" id='t'>
+				    				<a href="{:U('Admin/Article/tags',array('tag'=>$t))}">{$t}</a>&nbsp;&nbsp;
+				    			</volist></td>
+				    		<td><a href="{:U('Admin/Comment/acomment',array('id'=>$a['id']))}">{$a.commentcount}</a></td>
+				    		<td>{$a.posttime}</td>
+			    		</tr>
+			    	</foreach>
+		    	</tbody>
+	    	</table>
+    	</form>
+    </div><!--end of right-->
+</div><!--end of container-->
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<include file="Public:head"/>
+<html>
+
+
+<body>
+<div id="container"> 
+ 
+    
+    <div id="right">
+    	<h1>用户信息</h1>	
+    	
+    	<form action='{:U('Admin/User/handleUserInfo',array('id'=>$users[0]['id']))}' method='post'>
+		    <div class='rows'>
+		    	<label>姓名</label>
+		    	<input class='uinfo' type='text' name='username' value='{$users[0]['username']}'/>
+		    </div>
+		    <div class='rows'>
+		    	<label>邮箱</label>
+		    	<input class='uinfo' type='email' name='email' value='{$users[0]['email']}'/>
+		    </div>
+		    <div class='rows'>
+		    	<label>个人说明</label>
+		    	<textarea cols='50' rows='5' style="resize:none;" name='introduce'>{$users[0]['introduce']}</textarea>
+		    </div>
+		    <div class='rows'>
+		    	<label>原密码</label>
+		    	<input class='uinfo' type='password' name='oldpassword' placeholder='请输入原密码'/>
+		    </div>
+		    <div class='rows'>
+		    	<label>新密码</label>
+		    	<input class='uinfo' type='password' name='newpassword' placeholder='请输入新密码'/>
+		    </div>
+		    <div class='rows'>
+		    	<label>确认密码</label>
+		    	<input class='uinfo' type='password' name='cpassword' placeholder='请再次输入密码'/>
+		    </div>
+		    <!-- <div class='rows'>
+		    	<label></label>
+		    	<input class='uinfo'/>
+		    </div>
+		    <div class='rows'>
+		    	<label></label>
+		    	<input class='uinfo'/>
+		    </div>
+		    <div class='rows'>
+		    	<label></label>
+		    	<input class='uinfo'/>
+		    </div>
+		    <div class='rows'>
+		    	<label></label>
+		    	<input class='uinfo'/>
+		    </div>
+		    <div class='rows'>
+		    	<label></label>
+		    	<input class='uinfo'/>
+		    </div>-->
+		    <div class='rows'>
+		    	<input class='uinfo' type='submit' value='更新资料' style='width:100px;'/>
+		    </div> 
+
+    	</form>
+    </div><!--end of right-->
+</div><!--end of container-->
+</body>
+</html>

@@ -1,0 +1,157 @@
+*{
+	margin:0;
+	padding:0;
+	text-decoration:none;
+	list-style-type:none;
+	font-family:"Î¢ÈíÑÅºÚ";
+	color:#000;
+}
+
+body{
+	background:#F5F5F5;
+}
+#header a{
+	color:#FFF;
+}
+#header{
+	background:#000;
+	height:60px;
+	line-height:60px;
+}
+#header .logo{
+	width:140px;
+	height:60px;
+	float:left;
+	margin-left:75px;
+}
+#header .search{
+	width:260px;
+	height:30px;
+	float:left;
+	margin:15px 0;
+	margin-left:20%;
+	background:#363c41;
+}
+
+#header .search form{
+	display:block;
+}
+#header .search .searchInput{
+	width:200px;
+	height:20px;
+	line-height:20px;
+	float:left;
+	padding:5px 10px;
+	border:0;
+	background:#363c41;
+	color:#14191e;
+	outline:0;
+}
+#header .search .btn_search{
+	width:30px;
+	height:30px;
+	border:0;
+	float:right;
+	color:#FFF;
+	background-color:#363c41;
+	outline:0;
+}
+#header .search .btn_search:hover{
+	cursor:pointer;
+}
+#header .login{
+	width:60px;
+	height:60px;
+	line-height:60px;
+	text-align:center;
+	float:right;
+	margin-right:72px;
+}
+#header .login:hover{
+	background-color:#2980b9;
+	cursor:pointer;
+}
+
+#mainbody{
+	width:1000px;
+	margin:30px auto;
+}
+#mainbody #nav{
+	width:262px;
+	background:#FFF;
+	float:left;
+	position:fixed;
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+}
+#mainbody #nav ul{
+	display:block;
+}
+#mainbody #nav ul li{
+	padding:0 20px;
+	font-size:14px;
+	height:60px;
+}
+#mainbody #nav ul li a{
+	display:block;
+	color:#000;
+	height:59px;
+	line-height:59px;
+	text-align:center;
+	border-bottom:1px solid #edf1f2;
+}
+#mainbody #nav ul li:hover{
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+}
+
+#mainbody #content{
+	width:700px;
+	float:right;
+}
+
+#mainbody #content #notice,#cResource,#eResource,#discuss{
+	margin:0 auto;
+	padding:20px;
+	margin-bottom:20px;
+	background:#FFF;
+	box-shadow:0px 2px 4px rgba(0,0,0,0.1);
+}
+#mainbody #content  .contentHead{
+	height:30px;
+	line-height:30px;
+	border-bottom:1px solid #CCC;
+}
+#mainbody #content  h3{
+	font-size:18px;
+	display:block;
+	float:left;
+}
+#mainbody #content .more{
+	display:block;
+	float:right;
+	font-size:14px;
+}
+
+#mainbody #content ul li{
+	display:block;
+	height:30px;
+	line-height:30px;
+	//border-bottom:1px dashed #CCC;
+}
+
+#mainbody #content .noticeTitle{
+	display:block;
+	float:left;
+	font-size:14px;
+}
+#mainbody #content  .time{
+	display:block;
+	float:right;
+	font-size:14px;
+}
+
+#footer{
+	clear:both;
+	height:50px;
+	line-height:50px;
+	text-align:center;
+}

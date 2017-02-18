@@ -1,0 +1,130 @@
+<!doctype html>
+<include file="Public:head"/>
+<html>
+
+<body>
+<div id="container"> 
+    <div id="right">
+        
+        <foreach name='article' item='item'>
+            <div class='info'>
+                <div class='header_info'>
+                    <div class='date'>
+                        <div class='day'>
+                            {$item.posttime|date='d',strtotime(###)}
+                        </div>
+                        <div class='month'>
+                            {$item.posttime|date='M',strtotime(###)}
+                        </div>
+                    </div><!-- end of date -->
+                    <div class='article_header'>
+                        <h3 class='title'>
+                            <a href='{:U('Home/Article/singleArticle',array('id'=>$item['id']))}'>{$item.title}</a>
+                        </h3>
+                        <div class='author'>
+                            <!-- {$item.author} -->
+                            <a href="{:U('Home/Article/author',array('author'=>$item['author']))}">{$item.author}</a>
+                        </div>
+                        <div class='comments'>
+                            <a href='#clocation'>{$count} 条评论</a>
+                        </div>
+                        <div class='tags'>
+                            <!-- <a href="#">{$item.tags}</a> -->
+                            <!-- 循环输出标签 -->
+                            <volist name="item['tags']" id='t'>
+                                <a href="{:U('Home/Article/tags',array('tag'=>$t))}">{$t}</a>&nbsp;&nbsp;
+                            </volist>
+                        </div>
+                    </div><!-- end of article_header-->
+                </div><!-- end of header_info-->
+                <div class='clearFix'></div>
+                <div class='contents'>
+                    {$item.content|htmlspecialchars_decode=###}
+                </div>
+            </div><!-- end of info -->
+        </foreach>
+        <!-- 评论 -->
+         <div id='clocation'>
+            <h4>{$count}条评论</h4>
+        </div>
+        <foreach name='comments' item='c'><!--第1级评论-->
+            <div class='info'>
+                <div class='nt'>
+                    <span>{$c.name}</span>
+                    <span class='ctime'>{$c.ctime}</span>
+                </div>
+               <p class='cc'>
+                <if condition='$c["pid"] neq 0'>回复@{$c.pidname}：{$c.ccontent}
+                <else/>{$c.ccontent}
+                </if>
+               </p>
+               <a href='javascript:void(0);' onclick='recomment({$c["id"]})' class='recomment'>回复</a>
+               <!-- 回复评论框 -->
+               <div class='comment info innercomment{$c["id"]} innercomment' id='innercomment{$c["id"]}'>
+                <h3 class='h3c'>评论</h3>
+                <!-- <a href='javascript:void(0);' onclick='close()' class='close' >×</a> -->
+                <div class='clearfix'></div>
+                <form action='{:U('Home/Article/innerComments',array('id'=>$c['articleid'],'pid'=>$c['id']))}' method='post'>
+                    <div class='rows'>
+                        <input type='text' name='name' required='required' placeholder='姓名/name' class='ainfo' />
+                        <label>姓名(<span class='star'>*</span>)</label>
+                    </div>
+                    <div class='rows'>
+                        <input type='email' name='mail' required='required' placeholder='邮箱/email'  class='ainfo'/>
+                        <label>邮箱(<span class='star'>*</span>)</label>
+                    </div>
+                    <textarea class='commenttext' required='required' placeholder='评论/comments' cols='50' rows='5' name='ccontent' ></textarea>
+                    <input type='submit' name='subcomment' class='subcomment' value='提交评论'/>
+                </form>
+               </div><!--end of comment-->
+               <!-- 回复下面的回复 --><!--第2级评论-->
+                <!-- <foreach name='innercomments' item='ic'>
+                    <if condition="$ic['pid'] eq $c['id']">
+                        <div class='info cinfo'>
+                        <div class='nt'>
+                            <span>{$ic.name}</span>
+                            <span class='ctime'>{$ic.ctime}</span>
+                        </div>
+                        <p class='cc'>{$ic.ccontent}</p>
+                        <a href='javascript:void(0);' onclick='innerrecomment(this)' class='innerrecomment'>回复</a> -->
+                        <!-- 回复下面回复的评论框 -->
+                        <!-- <div class='comment info innerrecomments'>
+                            <h3>评论</h3>
+                            <form action='{:U('Home/Article/innerComments',array('id'=>$c['articleid'],'pid'=>$ic['id']))}' method='post'>
+                                <div class='rows'>
+                                    <input type='text' name='name' required='required' placeholder='姓名/name' class='ainfo' />
+                                    <label>姓名(<span class='star'>*</span>)</label>
+                                </div>
+                                <div class='rows'>
+                                    <input type='email' name='mail' required='required' placeholder='邮箱/email'  class='ainfo'/>
+                                    <label>邮箱(<span class='star'>*</span>)</label>
+                                </div>
+                                <textarea class='commenttext' required='required' placeholder='评论/comments' cols='50' rows='5' name='ccontent' ></textarea>
+                                <input type='submit' name='subcomment' class='subcomment' value='提交评论'/>
+                            </form>
+                        </div> --><!--end of innerrecomments-->
+                        <!-- </div>
+                    </if>
+                </foreach> -->
+            </div>
+        </foreach>
+        <!-- 回复框 -->
+        <div class='comment info'>
+            <h3>评论</h3>
+            <form action='{:U('Home/Article/comments',array('id'=>$article[0]['id']))}' method='post'>
+                <div class='rows'>
+                    <input type='text' name='name' required='required' placeholder='姓名/name' class='ainfo' />
+                    <label>姓名(<span class='star'>*</span>)</label>
+                </div>
+                <div class='rows'>
+                    <input type='email' name='mail' required='required' placeholder='邮箱/email'  class='ainfo'/>
+                    <label>邮箱(<span class='star'>*</span>)</label>
+                </div>
+                <textarea class='commenttext' required='required' placeholder='评论/comments' cols='50' rows='5' name='ccontent' ></textarea>
+                <input type='submit' name='subcomment' class='subcomment' value='提交评论'/>
+            </form>
+        </div><!--end of comment-->
+    </div><!--end of right-->
+</div><!--end of container-->
+</body>
+</html>

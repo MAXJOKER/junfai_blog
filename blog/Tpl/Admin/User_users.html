@@ -1,0 +1,65 @@
+<!doctype html>
+<include file="Public:head"/>
+<html>
+
+
+<body>
+<div id="container"> 
+ 
+    
+    <div id="right">
+    	<h1>用户管理</h1>	
+    	
+    	<form action='{:U('Admin/User/deleteAll')}' method='post'>
+		    <div class='paction'>
+		    	<select name='selectaction'>
+		    		<option>批量操作</option>
+		    		<option value='1'>批量删除</option>
+		    	</select>
+		    	<input type='submit' class='do_action' value='执 行'/>
+	    	</div>
+	    	<table class='fixed widefat table' >
+	    		<thead>
+	    			<tr class='firstrow'>
+		    			<td>
+		    				<input type='checkbox'class='select_all' />
+		    			</td>
+		    			<th>用户ID</th>
+		    			<th>姓名</th>
+		    			<th>邮箱</th>
+		    			<th>状态</th>
+		    			<th>登录时间</th>
+		    			<th>登录IP</th>
+	    			</tr>
+	    		</thead>
+	    		<tbody>
+			    	<foreach name='users' item='u'>
+			    		<tr>
+				    		<th>
+				    			<input type='checkbox' name='check[]' value='{$u['id']}'/>
+				    		</th>
+				    		<td>
+				    			<a href="{:U('Admin/User/updateUserInfo',array('id'=>$u['id']))}">{$u.userid}</a>
+				    			<div class='row_action'>
+				    				<span><a href="{:U('Admin/User/updateUserInfo',array('id'=>$u['id']))}">编辑</a></span>
+				    			</div>
+				    		</td>
+				    		<td><a href="{:U('Admin/User/updateUserInfo',array('id'=>$u['id']))}">{$u.username}</a></td>			    	
+				    		<td><a href="mailto:{$u['email']}">{$u.email}</a></td>	
+				    		<td>
+				    			<a href="">{$u.status}</a>
+				    			<div class='row_action'>
+				    				<span><a href="{:U('Admin/User/setStatus',array('id'=>$u['id'],'status'=>$u['status']))}"><if condition='$u["status"] eq 1'>禁用<else/>启用</if></a></span>
+				    			</div>
+				    		</td>
+				    		<td><a href="">{$u.logintime}</a></td>
+				    		<td>{$u.loginip}</td>
+			    		</tr>
+			    	</foreach>
+		    	</tbody>
+	    	</table>
+    	</form>
+    </div><!--end of right-->
+</div><!--end of container-->
+</body>
+</html>

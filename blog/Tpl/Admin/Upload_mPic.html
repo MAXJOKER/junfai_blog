@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<include file="Public:head"/>
+<body>
+	<div id="right">
+		<form action="" method="post" enctype="multipart/form-data">
+			<h1>图片上传
+				<a href="{:U('Admin/Upload/upload')}">图片上传</a>
+			</h1>	
+			<div class='paction'>
+			    	<select name='selectaction'>
+			    		<option>批量操作</option>
+			    		<option value='1'>批量删除</option>
+			    	</select>
+			    	<input type='submit' class='do_action' value='执 行'/>
+		    </div>
+		
+		 	<!-- <input type="file" name="files[]"/>
+		  	<input name="" value="上传" type="submit" /> -->
+		</form>
+	</div>
+</body>
+</html>

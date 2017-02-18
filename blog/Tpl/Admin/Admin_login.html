@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0064)http://www.17sucai.com/preview/137615/2015-01-15/demo/index.html -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta content="IE=11.0000" http-equiv="X-UA-Compatible" /> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+ </head>
+ <body>
+  <load href=".__PUBLIC__/Css/admin_login.css" /> 
+  <load href=".__PUBLIC__/Js/jquery-1.11.2.min.js" /> 
+  <title>登录页面</title> 
+  <script type="text/javascript">
+$(function(){
+	//得到焦点
+	$("#password").focus(function(){
+		$("#left_hand").animate({
+			left: "150",
+			top: " -38"
+		},{step: function(){
+			if(parseInt($("#left_hand").css("left"))>140){
+				$("#left_hand").attr("class","left_hand");
+			}
+		}}, 2000);
+		$("#right_hand").animate({
+			right: "-64",
+			top: "-38px"
+		},{step: function(){
+			if(parseInt($("#right_hand").css("right"))> -70){
+				$("#right_hand").attr("class","right_hand");
+			}
+		}}, 2000);
+	});
+	//失去焦点
+	$("#password").blur(function(){
+		$("#left_hand").attr("class","initial_left_hand");
+		$("#left_hand").attr("style","left:100px;top:-12px;");
+		$("#right_hand").attr("class","initial_right_hand");
+		$("#right_hand").attr("style","right:-112px;top:-12px");
+	});
+
+	//重载验证码
+	$('#verifyImg').click(function(){
+		var time=new Date().getTime();
+		$('#verifyImg').attr('src','/blog/index.php?g=Admin&m=Admin&a=verify&time='+time);
+	});
+});
+</script> 
+  <meta name="GENERATOR" content="MSHTML 11.00.9600.17496" />   
+  <div class="top_div"></div> 
+  <div style="background: rgb(255, 255, 255); margin: -100px auto auto; border: 1px solid rgb(231, 231, 231); border-image: none; width: 400px; height: 250px; text-align: center;"> 
+   <div style="width: 165px; height: 96px; position: absolute;"> 
+    <div class="tou"></div> 
+    <div class="initial_left_hand" id="left_hand"></div> 
+    <div class="initial_right_hand" id="right_hand"></div>
+   </div> 
+   <form action='{:U('Admin/Admin/checkLogin')}' method='post'>
+   <p style="padding: 30px 0px 10px; position: relative;">
+   	<span class="u_logo"></span> 
+   	<input class="ipt" type="text" placeholder="请输入账号或邮箱" name='username' value="" />
+   </p> 
+   <p style="position: relative;">
+   	<span class="p_logo"></span> 
+   	<input class="ipt" id="password" type="password" placeholder="请输入密码" name='password' value="" /> 
+   </p> 
+   <p style="position:relative;" class='v'>
+   		<span class='verify'></span>
+   		<input type='text' name='verify' class='ipt verifycode' value='' placeholder='请输入验证码' />
+   		<img src="{:U('Admin/Admin/verify')}" id='verifyImg' />
+   </p>
+   <div style="height: 50px; line-height: 50px; margin-top: 22px; border-top-color: rgb(231, 231, 231); border-top-width: 1px; border-top-style: solid;"> 
+    <p style="margin: 0px 35px 20px 45px;"> 
+     <!-- <SPAN style="float: left;">
+		<A style="color: rgb(204, 204, 204);" href="#">忘记密码?</A>
+	</SPAN>  --> 
+      <span style="float: right;"> 
+      <!-- <A style="color: rgb(204, 204, 204); margin-right: 10px;" href="#">注册</A>   --> 
+       <!-- <a style="background: rgb(0, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" href="#">登录 </a>  -->
+       <input type='submit' name='sub' class='sub' value='登 录' />
+      </span> 
+    </p> 
+   </div> 
+ </form>
+  </div> 
+  <div style="text-align:center;"></div>   
+ </body>
+</html>

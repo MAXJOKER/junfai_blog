@@ -1,0 +1,81 @@
+<!doctype html>
+<include file="Public:head"/>
+<html>
+
+
+<body>
+<div id="container"> 
+ 
+    
+    <div id="right">
+    	<h1>评论管理</h1>	
+    	<ul class='article_info'>
+    		<li>
+    			<a href="">全部(<span>{$count}</span>)</a>
+    			 <!-- |  -->
+    		</li>
+    		<!-- <li>
+    			<a href="">已发布(<span>{$count}</span>)</a>
+    			 | 
+    		</li>
+    		<li>
+    			<a href="">草稿(<span>{$count}</span>)</a>
+    		</li> -->
+    	</ul>
+    	<form action='{:U('Admin/Comment/deleteAll')}' method='post'>
+	    	<div class='paction'>
+		    	<select name='selectaction'>
+		    		<option>批量操作</option>
+		    		<option value='1'>批量删除</option>
+		    	</select>
+		    	<input type='submit' class='do_action' value='执 行'/>
+	    	</div>
+	    	<table class='fixed widefat table' >
+	    		<thead>
+	    			<tr class='firstrow'>
+		    			<td>
+		    				<input type='checkbox'class='select_all' />
+		    			</td>
+		    			<th>作者</th>
+		    			<th>评论</th>
+		    			<th>日期</th>
+		    			<th>回复至</th>
+	    			</tr>
+	    		</thead>
+	    		<tbody>
+			    	<foreach name='acomment' item='c'>
+			    		<tr>
+				    		<th>
+				    			<input type='checkbox' name='check[]' value='{$c['id']}_{$c['articleid']}'/>
+				    		</th>
+				    		<td>
+				    			<!-- <a href="{:U('Admin/Article/updateArticle',array('id'=>$a['id']))}">{$a.name}</a> -->
+				    			{$c.name}
+				    			<span class='ninfo'><a href="mailto:{$c['email']}">{$c.email}</a></span>
+				    			<span class='ninfo'><a href="">{$c.cip}</a></span>
+				    			<!-- <p class='content'>{$a.content|htmlspecialchars_decode=###|mb_substr=0,20,'utf-8'}</p> -->
+				    			<!-- <div class='row_action'>
+				    				<span><a href="{:U('Admin/Article/updateArticle',array('id'=>$a['id']))}">编辑</a></span>
+				    				<span><a href="{:U('Home/Article/singleArticle',array('id'=>$a['id']))}">查看</a></span>
+				    				<span><a href="{:U('Admin/Comment/delComment',array('id'=>$c['id']))}">删除</a></span>
+				    			</div> -->
+				    		</td>
+				    		<td class='ccontent'>
+				    			{$c.ccontent}
+				    			<div class='row_action'>
+				    				<span><a href="{:U('Admin/Comment/delComment',array('id'=>$c['id'],'article'=>$c['articleid']))}" class='del'>删除</a></span>
+				    			</div>
+				    		</td>	
+				    		<td>
+				    			{$c.ctime}
+				    		</td>		   	
+				    		<td><a href="{:U('Home/Article/singleArticle',array('id'=>$c['articleid']))}">{$c.articletitle}</a></td>	
+			    		</tr>
+			    	</foreach>
+		    	</tbody>
+	    	</table>
+    	</form>
+    </div><!--end of right-->
+</div><!--end of container-->
+</body>
+</html>
